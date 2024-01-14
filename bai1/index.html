@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style type="text/css" media="screen">
+        .user_item {
+            color: green;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .male {
+            color: blue;
+        }
+        .female {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul id="target">
+        <!-- Thẻ ul để chứa các thẻ li sẽ được thêm bởi JavaScript -->
+    </ul>
+
+    <script>
+        var users = [
+            { id: 1, name: "James Smith", gender: 1 },
+            { id: 2, name: "Isla Brown", gender: 2 },
+            { id: 3, name: "Amelia Davies", gender: 2 },
+            { id: 4, name: "Jacob Evans", gender: 1 }
+        ];
+
+        var target = document.querySelector("#target");
+
+        users.forEach(function(user) {
+            var li = document.createElement("li");
+
+            // Tạo nội dung của thẻ li
+            var genderText = user.gender === 1 ? "male" : "female";
+            var liContent = document.createTextNode(user.id + " - " + user.name + " - " + genderText);
+
+            // Thêm nội dung vào thẻ li
+            li.appendChild(liContent);
+
+            // Thêm lớp cho thẻ li tùy thuộc vào giới tính
+            li.classList.add("user_item", user.gender === 1 ? "male" : "female");
+
+            // Thêm thẻ li vào phần tử có id là "target"
+            target.appendChild(li);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User List</title>
+    <style type="text/css" media="screen">
+      .user_item {
+        color: green;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .male {
+        font-weight: bold;
+      }
+      .female {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="userForm">
+      <label for="userId">ID</label>
+      <input type="text" id="userId" required />
+
+      <label for="userName">Name</label>
+      <input type="text" id="userName" required />
+
+      <label for="userGender">Gender</label>
+      <select id="userGender" required>
+        <option value="1">Male</option>
+        <option value="2">Female</option>
+      </select>
+
+      <button type="button" onclick="addUser()">Add</button>
+    </form>
+
+    <ul id="target">
+      <!-- Thẻ ul để chứa các thẻ li sẽ được thêm bởi JavaScript -->
+    </ul>
+
+    <script>
+      var users = [
+        { id: 1, name: "tạ thị khánh linh", gender: 1 },
+        { id: 2, name: "linh linh", gender: 2 },
+        { id: 3, name: "em linh", gender: 2 },
+        { id: 4, name: "linh xinh xinh", gender: 1 },
+      ];
+
+      function renderUserList() {
+        var target = document.querySelector("#target");
+        target.innerHTML = "";
+
+        users.forEach(function (user) {
+          var li = document.createElement("li");
+          var genderText = user.gender === 1 ? "male" : "female";
+          li.textContent = user.id + " - " + user.name + " - " + genderText;
+          li.classList.add("user_item", user.gender === 1 ? "male" : "female");
+          target.appendChild(li);
+        });
+      }
+
+      function addUser() {
+        var userIdInput = document.getElementById("userId");
+        var userNameInput = document.getElementById("userName");
+        var userGenderSelect = document.getElementById("userGender");
+
+        var newUser = {
+          id: parseInt(userIdInput.value),
+          name: userNameInput.value,
+          gender: parseInt(userGenderSelect.value),
+        };
+
+        users.push(newUser);
+
+        renderUserList();
+
+        // Clear the form after adding user
+        userIdInput.value = "";
+        userNameInput.value = "";
+        userGenderSelect.value = "1";
+      }
+
+      // Render initial user list
+      renderUserList();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Operations</title>
+  </head>
+  <body>
+    <script>
+      let classRoom = [
+        "nguyễn tiến duẩn",
+        "Hoàng Xuân Hiếu",
+        "Hồ Sỹ Hưng",
+        "Nguyễn Đức Thuận",
+        "đoàn Minh Tùng",
+        "Hồ Sỹ Hưng",
+        "Lê Trung Hiếu",
+        "đoàn vua dep trai vua hoc gioi Hữu Quý",
+      ];
+
+      // Câu 1: Tách tên và họ riêng
+      let separatedNames = classRoom.map((fullName) => {
+        let nameParts = fullName.split(" ");
+        return {
+          firstName: nameParts[nameParts.length - 1],
+          lastName: nameParts.slice(0, nameParts.length - 1).join(" "),
+        };
+      });
+      console.log("Câu 1:", separatedNames);
+
+      // Câu 2: Thêm một sinh viên vào vị trí bất kỳ trong mảng
+      let newStudent = "Nguyễn Văn A";
+      let positionToAdd = 2; // Vị trí bất kỳ trong mảng
+      classRoom.splice(positionToAdd, 0, newStudent);
+      console.log("Câu 2:", classRoom);
+
+      // Câu 3: Xoá một sinh viên khỏi mảng
+      let studentToRemove = "Hồ Sỹ Hưng";
+      classRoom = classRoom.filter(
+        (student) => student.toLowerCase() !== studentToRemove.toLowerCase()
+      );
+      console.log("Câu 3:", classRoom);
+
+      // Câu 4: Tìm kiếm theo tên, không chứa dấu
+      let searchName = "Le Trung Hieu"; // Tên cần tìm kiếm
+      let foundStudents = classRoom.filter((student) => {
+        let studentName = student
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        return studentName.includes(
+          searchName
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+        );
+      });
+      console.log("Câu 4:", foundStudents);
+    </script>
+  </body>
+</html>
