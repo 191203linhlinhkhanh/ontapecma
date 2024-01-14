@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>String Converter</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
         #result {
             margin-top: 10px;
         }
@@ -24,13 +21,9 @@
     <script>
         function convertString() {
             var inputString = document.getElementById("inputString").value;
-
-            // Chuyển đổi chuỗi sang format camelCase
             var camelCaseString = inputString.replace(/[^a-zA-Z0-9]/g, ' ').split(' ')
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
                 .join('');
-
-            // Hiển thị kết quả
             document.getElementById("result").textContent = camelCaseString;
         }
     </script>

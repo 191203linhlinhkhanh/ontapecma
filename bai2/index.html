@@ -11,12 +11,6 @@
         cursor: pointer;
         margin-bottom: 10px;
       }
-      .male {
-        font-weight: bold;
-      }
-      .female {
-        font-style: italic;
-      }
     </style>
   </head>
   <body>
@@ -37,7 +31,6 @@
     </form>
 
     <ul id="target">
-      <!-- Thẻ ul để chứa các thẻ li sẽ được thêm bởi JavaScript -->
     </ul>
 
     <script>
@@ -76,13 +69,10 @@
 
         renderUserList();
 
-        // Clear the form after adding user
         userIdInput.value = "";
         userNameInput.value = "";
         userGenderSelect.value = "1";
       }
-
-      // Render initial user list
       renderUserList();
     </script>
   </body>
